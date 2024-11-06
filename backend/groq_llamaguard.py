@@ -2,7 +2,7 @@ from dotenv import dotenv_values
 
 from groq import Groq
 
-from monitor_prompt import unsafe_categories
+from backend.monitor_prompt import unsafe_categories
 
 config = dotenv_values(".env")
 
