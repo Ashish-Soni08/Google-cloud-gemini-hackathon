@@ -68,11 +68,6 @@ jupyter kernelspec list
 - [**LlamaIndex Docs**](https://github.com/run-llama/llama_index/blob/main/llama-index-integrations/embeddings/llama-index-embeddings-gemini/llama_index/embeddings/gemini/base.py)
 - - [**LLamaIndex Example**](https://docs.llamaindex.ai/en/stable/examples/embeddings/gemini/)
   
-#### RERANK MODEL
-
-- [**Model Card**]()
-- [**LlamaIndex Docs**]()
-
 #### GROQ
 
 - **Model ID:** `llama-guard-3-8b`
