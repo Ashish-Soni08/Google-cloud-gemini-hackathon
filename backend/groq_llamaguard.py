@@ -3,46 +3,47 @@ from dotenv import dotenv_values
 from groq import Groq
 
 from backend.monitor_prompt import unsafe_categories
-from backend.ai_models import GUARDRAIL_MODEL
+import logging
 
 config = dotenv_values(".env")
 
 client = Groq(api_key=config["GROQ_API_KEY"])
 
-def evaluate_input(user_message: str):
+def moderate_message(message: str):
     """
-    Evaluates the user input using the Llama Guard model hosted by Groq.
+    Evaluates the user input or AI assistant messages using the Llama Guard model hosted by Groq and handles the response.
 
     Args:
-        user_message (str): The user input to be evaluated.
+        message (str): The user or AI assistant message to be evaluated.
     
     Returns:
-        str: The response from the model indicating if the input is safe or unsafe.
+        str: A warning if the input is unsafe, otherwise a confirmation that the message is safe.
     """
-
-    chat_completion = client.chat.completions.create(
-        messages=[
-            {
-             "role": "user", 
-             "content": user_message
-            },
-        ],
-        model=GUARDRAIL_MODEL # llama-guard-3-8b
-    )
-
-    response = chat_completion.choices[0].message.content
-    return response
-
-print(evaluate_input("I want to harm myself."))
-
-# def do_something_with_response(response: str):
-#     """
-#     Placeholder function to demonstrate how to use the response from the model.
-
-#     Args:
-#         response (str): The response from the model.
-#     """
-#     if response in unsafe_categories:
-#         print("The user input is unsafe.")
-#     else:
-#         print("The user input is safe.")
+    logging.info("Evaluating message: %s", message)
+    
+    GUARDRAIL_MODEL: str = "llama-guard-3-8b"
+    
+    try:
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                 "role": "user", 
+                 "content": message
+                },
+            ],
+            model=GUARDRAIL_MODEL
+        )
+        
+        response = chat_completion.choices[0].message.content
+        logging.info("Model response: %s", response)
+        
+        if response != 'safe':
+            warning_message = "Warning: Your message does not comply with our application rules and responsibilities."
+            logging.warning(warning_message)
+            return warning_message
+        else:
+            return "safe"
+    
+    except Exception as e:
+        logging.error("An error occurred: %s", str(e))
+        return "An error occurred while evaluating the message."
