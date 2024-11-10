@@ -20,7 +20,7 @@ python -V
 ```
 
 ```bash
-# create a environment named -> nvidia-ai
+# create a environment named -> google-ai
 python -m venv google-ai
 ```
 
@@ -48,21 +48,25 @@ jupyter kernelspec list
 
 ### DATA SOURCES
 
-- [**LlamaIndex Docs**](https://docs.llamaindex.ai/en/stable/module_guides/loading/simpledirectoryreader/)
+- [**DIRECTORY READER(PDFs)**](https://docs.llamaindex.ai/en/stable/module_guides/loading/simpledirectoryreader/)
 
 ### MODEL PROVIDERS
 
 #### GOOGLE
 
-- **Model ID:**
-- **Developed by:**
-- [**Model Card**]()
-- [**LlamaIndex Docs**]()
+- **Model ID:** `gemini-1.5-pro`
+- **Developed by:** Google
+- [**Model Card**](https://ai.google.dev/gemini-api/docs/models/gemini#gemini-1.5-pro)
+- [**LlamaIndex Docs**](https://docs.llamaindex.ai/en/stable/api_reference/llms/gemini/)
+- [**LLamaIndex Example**](https://docs.llamaindex.ai/en/stable/examples/llm/gemini/)
 
 #### EMBEDDING MODEL
 
-- [**Model Card**]()
-- [**LlamaIndex Docs**]()
+- **Model ID:** `text-embedding-004`
+- **Developed by:** Google
+- [**Model Card**](https://ai.google.dev/gemini-api/docs/models/gemini#text-embedding-and-embedding)
+- [**LlamaIndex Docs**](https://github.com/run-llama/llama_index/blob/main/llama-index-integrations/embeddings/llama-index-embeddings-gemini/llama_index/embeddings/gemini/base.py)
+- - [**LLamaIndex Example**](https://docs.llamaindex.ai/en/stable/examples/embeddings/gemini/)
   
 #### RERANK MODEL
 
@@ -75,6 +79,7 @@ jupyter kernelspec list
 - **Developed by:** `Meta`
 - **Context Window:** `8,192 tokens`
 - [**Model Card**](https://huggingface.co/meta-llama/Llama-Guard-3-8B)
+- [**GROQ Docs**](https://console.groq.com/docs/content-moderation)
 
 ## Built for
 

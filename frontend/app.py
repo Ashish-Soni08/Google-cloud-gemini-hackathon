@@ -9,15 +9,15 @@ from llama_index.core import (load_index_from_storage,
                               VectorStoreIndex
                               )
 from llama_index.core.node_parser import SentenceSplitter
-from llama_index.vector_stores.qdrant import QdrantVectorStore
 
+from llama_index.vector_stores.qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
 
 from backend.etl import (add_metadata_to_documents,
                          extract,
                          transform
                          )
-from backend.nvidia_nims import (embedding_model,
+from backend.ai_models import (embedding_model,
                                  llm,
                                  rerank_model
                                  )
@@ -45,7 +45,10 @@ def load(document: str = None, progress: gr.Progress = gr.Progress()) -> None:
         documents = transform(add_metadata_to_documents(extract(document)))
 
         # Create a Qdrant vector store and storage context
-        vector_store = QdrantVectorStore(client=qdrant_client, collection_name="pillpal_documents")
+        vector_store = QdrantVectorStore(client=qdrant_client,
+                                         collection_name="pillpal_documents",
+                                         )
+
         storage_context = StorageContext.from_defaults(vector_store=vector_store)
 
         # Create the index from the documents
@@ -53,6 +56,8 @@ def load(document: str = None, progress: gr.Progress = gr.Progress()) -> None:
 
         # Create the query engine
         query_engine = index.as_query_engine(similarity_top_k=5, streaming=True)
+        
+        return f"Successfully loaded {len(documents)} documents into Qdrant Vector Store."
     except Exception as e:
         return f"Error loading documents: {str(e)}"
 
