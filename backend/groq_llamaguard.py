@@ -5,7 +5,7 @@ from groq import Groq
 from backend.monitor_prompt import unsafe_categories
 import logging
 
-config = dotenv_values(".env")
+config = dotenv_values("backend/.env")
 
 client = Groq(api_key=config["GROQ_API_KEY"])
 

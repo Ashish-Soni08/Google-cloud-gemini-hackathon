@@ -5,7 +5,7 @@ import google.generativeai as genai
 from llama_index.llms.gemini import Gemini
 from llama_index.embeddings.gemini import GeminiEmbedding
 
-config = dotenv_values(".env")
+config = dotenv_values("backend/.env")
 
 # MODELS
 EMBEDDING_MODEL: str = "models/text-embedding-004"
