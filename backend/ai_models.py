@@ -7,23 +7,20 @@ from llama_index.embeddings.gemini import GeminiEmbedding
 
 config = dotenv_values(".env")
 
-genai.configure(api_key=config["GEMINI_API_KEY"])
-
-# MODELS HOSTED BY NVIDIA(NIMS) 
+# MODELS
 EMBEDDING_MODEL: str = "models/text-embedding-004"
 
-LLM_MODEL: str = "models/gemini-pro"
+LLM_MODEL: str = "models/gemini-1.5-pro"
 
-RERANK_MODEL: str = "add model name"
-
-# nv-embedqa-mistral-7b-v2
-embedding_model = GeminiEmbedding(model=EMBEDDING_MODEL,
+# text-embedding-004
+embedding_model = GeminiEmbedding(api_key=config["GEMINI_API_KEY"],
+                                  model=EMBEDDING_MODEL,
                                   truncate="END")
 
-# llama-3.1-405b-instruct
+# gemini-1.5-pro
 llm = Gemini(api_key=config["GEMINI_API_KEY"],
-             model=LLM_MODEL)
+             model=LLM_MODEL,
+             temperature=0.2)
 
-
-# nv-rerankqa-mistral-4b-v3
-rerank_model = "add model"
+# llama-guard-3-8b
+GUARDRAIL_MODEL: str = "llama-guard-3-8b"
