@@ -13,16 +13,15 @@ from llama_index.core.node_parser import SentenceSplitter
 from llama_index.vector_stores.qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
 
-from backend.etl import (add_metadata_to_documents,
-                         extract,
-                         transform
-                         )
-from backend.ai_models import (embedding_model,
-                                 llm,
-                                 rerank_model
-                                 )
+from backend import (add_metadata_to_documents,
+                     extract,
+                     transform,
+                     embedding_model,
+                     llm,
+                     moderate_message,
+                     llm_prompt)
 
-config = dotenv_values("/backend/.env")
+config = dotenv_values("backend/.env")
 
 # Configure settings for the application
 Settings.embed_model = embedding_model
@@ -91,48 +90,36 @@ def stream_response(message, history):
 
 ####### Gradio Application #######
 
-inputs = [PDF(label="Upload a PDF", interactive=True),
-          gr.Textbox(label="Ask a question", placeholder="What is the drug interaction between aspirin and ibuprofen?", lines=5)
-          ]
-
-outputs = []
-
-examples = []
-
 theme = gr.themes.Soft()
 
 title = """<h1 id="title"> PillPal💊</h1>"""
 
-description = """
-
-"""
+description = """Chatbot for drug information. Upload a PDF document to get started"""
 
 css = """h1#title {
     text-align: center;
     } 
 """
 
-pillpal_bot = gr.Blocks(css=css, theme=theme)
+pillpal_bot = gr.Blocks(theme=theme, css=css, fill_height=True, fill_width=True)
 
 with pillpal_bot:
     gr.Markdown(title)
     gr.Markdown(description)
-    
-
-    interface = gr.ChatInterface(
-        fn=llm_response,
-        type="messages",
-        title="PillPal💊",
-        inputs=inputs,
-        outputs=outputs,
-        examples=examples,
-        cache_examples=True,
-        retry_btn=None,
-        undo_btn="Delete Previous"
-        clear_btn="Clear",
-        flagging_options=[],
-        flagging_callback=hf_writer
-    )
+    with gr.Row():
+        with gr.Column(scale=2):
+            pdf = PDF(label="Upload a PDF", interactive=True)
+        with gr.Column(scale=2):
+            chatbot = gr.ChatInterface(fn=stream_response,
+                                        type="messages",
+                                        chatbot=gr.Chatbot(label="Chat with PillPal",
+                                                           type="messages",
+                                                           inputs=[pdf],
+                                                           show_share_button=True,
+                                                           show_copy_button=True,
+                                                           show_copy_all_button=True,
+                                                           scale=2)
+                                        )
 
 if __name__ == "__main__":
     pillpal_bot.launch(debug=True)
