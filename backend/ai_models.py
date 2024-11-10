@@ -21,6 +21,3 @@ embedding_model = GeminiEmbedding(api_key=config["GEMINI_API_KEY"],
 llm = Gemini(api_key=config["GEMINI_API_KEY"],
              model=LLM_MODEL,
              temperature=0.2)
-
-# llama-guard-3-8b
-GUARDRAIL_MODEL: str = "llama-guard-3-8b"
