@@ -85,3 +85,12 @@ jupyter kernelspec list
 [Ideal Chunk Size of a RAG System](https://www.llamaindex.ai/blog/evaluating-the-ideal-chunk-size-for-a-rag-system-using-llamaindex-6207e5d3fec5)
 
 [Metadata Customization](https://docs.llamaindex.ai/en/stable/module_guides/loading/documents_and_nodes/usage_documents/)
+
+```bash
+export PYTHONPATH=$(pwd)
+
+```
+
+```bash
+gradio frontend/app.py --demo-name=pillpal_bot
+```
