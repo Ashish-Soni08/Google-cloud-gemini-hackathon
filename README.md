@@ -20,13 +20,13 @@ python -V
 ```
 
 ```bash
-# create a environment named -> google-ai
-python -m venv google-ai
+# create a environment named -> samba-ai
+python -m venv samba-ai
 ```
 
 ```bash
 # activate the environment
-source google-ai/bin/activate
+source samba-ai/bin/activate
 ```
 
 ```bash
@@ -36,7 +36,7 @@ pip install jupyter ipykernel
 
 ```bash
 # add the virtual environment as a kernel for the jupyter notebook
-python -m ipykernel install --user --name=google-ai --display-name="Py3.12-google-ai"
+python -m ipykernel install --user --name=samba-ai --display-name="Py3.12-samba-ai"
 ```
 
 ```bash
@@ -52,33 +52,41 @@ jupyter kernelspec list
 
 ### MODEL PROVIDERS
 
-#### GOOGLE
+#### SambaNova Cloud
 
-- **Model ID:** `gemini-1.5-pro`
-- **Developed by:** Google
-- [**Model Card**](https://ai.google.dev/gemini-api/docs/models/gemini#gemini-1.5-pro)
-- [**LlamaIndex Docs**](https://docs.llamaindex.ai/en/stable/api_reference/llms/gemini/)
-- [**LLamaIndex Example**](https://docs.llamaindex.ai/en/stable/examples/llm/gemini/)
+- **Model ID:** `Meta-Llama-3.2-3B-Instruct`
+- **Developed by:** `META`
+- [**Model Card**](https://huggingface.co/meta-llama/Llama-3.2-3B)
+- [**LlamaIndex Docs**](https://docs.llamaindex.ai/en/stable/examples/llm/sambanova/)
 
 #### EMBEDDING MODEL
 
-- **Model ID:** `text-embedding-004`
-- **Developed by:** Google
-- [**Model Card**](https://ai.google.dev/gemini-api/docs/models/gemini#text-embedding-and-embedding)
-- [**LlamaIndex Docs**](https://github.com/run-llama/llama_index/blob/main/llama-index-integrations/embeddings/llama-index-embeddings-gemini/llama_index/embeddings/gemini/base.py)
-- - [**LLamaIndex Example**](https://docs.llamaindex.ai/en/stable/examples/embeddings/gemini/)
-  
+- **Model ID:** `jina-embeddings-v3`
+- **Developed by:** `JINA AI`
+- **Max Input Tokens:** `8192`
+- **Max Output Dimensions:** `1024`
+- [**Model Card**](https://huggingface.co/jinaai/jina-embeddings-v3)
+- [**LlamaIndex Docs**](https://docs.llamaindex.ai/en/latest/examples/embeddings/jinaai_embeddings/)
+
+#### RERANK MODEL
+
+- **Model ID:** `jina-reranker-v2-base-multilingual`
+- **Model Size:** `278 M`
+- **Developed by:** `JINA AI`
+- [**Model Card**](https://huggingface.co/jinaai/jina-reranker-v2-base-multilingual)
+- [**LlamaIndex Docs**](https://docs.llamaindex.ai/en/stable/examples/node_postprocessor/JinaRerank/)
+
 #### GROQ
 
 - **Model ID:** `llama-guard-3-8b`
-- **Developed by:** `Meta`
+- **Developed by:** `META`
 - **Context Window:** `8,192 tokens`
 - [**Model Card**](https://huggingface.co/meta-llama/Llama-Guard-3-8B)
-- [**GROQ Docs**](https://console.groq.com/docs/content-moderation)
+- [**Groq Docs**](https://console.groq.com/docs/content-moderation)
 
 ## Built for
 
-[Google Cloud Gemini Hackathon](https://googlecloudgeminihackathon.devpost.com/?ref_content=default&ref_feature=challenge&ref_medium=portfolio)
+[Lightning Fast AI Hackathon](https://sambanova.devpost.com/)
 
 ## Resources
 
