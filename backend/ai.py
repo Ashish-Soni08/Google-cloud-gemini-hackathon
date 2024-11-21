@@ -4,7 +4,7 @@ from llama_index.embeddings.jinaai import JinaEmbedding
 from llama_index.postprocessor.jinaai_rerank import JinaRerank
 from llama_index.llms.sambanovacloud import SambaNovaCloud
 
-config = dotenv_values("backend/.env")
+config = dotenv_values(".env")
 
 # MODELS
 EMBEDDING_MODEL: str = "jina-embeddings-v3"
@@ -37,7 +37,12 @@ query_embed_model = JinaEmbedding(
 llm = SambaNovaCloud(api_key=config["SAMBANOVA_API_KEY"],
              model=LLM_MODEL,
              max_tokens=1024,
-             temperature=0.2,
-             top_k=1,
-             top_p=0.9
+             temperature=0.2
              )
+
+# jina-reranker-v2-base-multilingual
+rerank_model = JinaRerank(
+    api_key=config["JINA_API_KEY"],
+    model=RERANK_MODEL,
+    top_n=5
+    )

@@ -2,10 +2,10 @@ from dotenv import dotenv_values
 
 from groq import Groq
 
-from backend.monitor_prompt import unsafe_categories
+from backend.prompt import unsafe_categories
 import logging
 
-config = dotenv_values("backend/.env")
+config = dotenv_values(".env")
 
 client = Groq(api_key=config["GROQ_API_KEY"])
 
