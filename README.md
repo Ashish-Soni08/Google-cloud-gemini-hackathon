@@ -48,7 +48,7 @@ jupyter kernelspec list
 
 ### DATA SOURCES
 
-- [**DIRECTORY READER(PDFs)**](https://docs.llamaindex.ai/en/stable/module_guides/loading/simpledirectoryreader/)
+- [DAILY MED](https://dailymed.nlm.nih.gov/dailymed/index.cfm)
 
 ### MODEL PROVIDERS
 
