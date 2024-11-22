@@ -1,6 +1,6 @@
 # PillPal💊
 
-![PillPal_Logo](PillPal_logo.png)
+![PillPal_Logo](images/PillPal_logo.png)
 
 ## Problem Statement
 
@@ -97,6 +97,8 @@ jupyter kernelspec uninstall samba-ai
 ## Built for
 
 [Lightning Fast AI Hackathon](https://sambanova.devpost.com/)
+
+![Hackathon_Banner](images/hackathon_banner.jpg)
 
 ## Resources
 
