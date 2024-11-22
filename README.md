@@ -30,6 +30,11 @@ source samba-ai/bin/activate
 ```
 
 ```bash
+# deactivate the virtual environment
+deactivate
+```
+
+```bash
 # create a Jupyter Notebook kernel
 pip install jupyter ipykernel
 ```
@@ -42,6 +47,11 @@ python -m ipykernel install --user --name=samba-ai --display-name="Py3.12-samba-
 ```bash
 # verify kernel installation
 jupyter kernelspec list
+```
+
+```bash
+
+jupyter kernelspec uninstall samba-ai
 ```
 
 ## ARCHITETURE OF THE APPLICATION
