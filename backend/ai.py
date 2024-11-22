@@ -2,7 +2,7 @@ from dotenv import dotenv_values
 
 from llama_index.embeddings.jinaai import JinaEmbedding
 from llama_index.postprocessor.jinaai_rerank import JinaRerank
-from llama_index.llms.sambanovacloud import SambaNovaCloud
+from llama_index.llms.sambanovasystems import SambaNovaCloud
 
 config = dotenv_values(".env")
 
@@ -34,11 +34,12 @@ query_embed_model = JinaEmbedding(
     )
 
 # Meta-Llama-3.2-3B-Instruct
-llm = SambaNovaCloud(api_key=config["SAMBANOVA_API_KEY"],
-             model=LLM_MODEL,
-             max_tokens=1024,
-             temperature=0.2
-             )
+llm = SambaNovaCloud(sambanova_url=config["SAMBANOVA_URL"],
+                     sambanova_api_key=config["SAMBANOVA_API_KEY"],
+                     model=LLM_MODEL,
+                     max_tokens=1024,
+                     temperature=0.2
+                     )
 
 # jina-reranker-v2-base-multilingual
 rerank_model = JinaRerank(
