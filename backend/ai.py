@@ -4,7 +4,7 @@ from llama_index.embeddings.jinaai import JinaEmbedding
 from llama_index.postprocessor.jinaai_rerank import JinaRerank
 from llama_index.llms.sambanovasystems import SambaNovaCloud
 
-config = dotenv_values(".env")
+config = dotenv_values("backend/.env")
 
 # MODELS
 EMBEDDING_MODEL: str = "jina-embeddings-v3"

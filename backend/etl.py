@@ -9,7 +9,7 @@ from llama_index.core.schema import Document
 
 from llama_parse import LlamaParse
 
-config = dotenv_values(".env")
+config = dotenv_values("backend/.env")
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
